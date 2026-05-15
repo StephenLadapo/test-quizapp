@@ -130,24 +130,27 @@ function displayResults() {
     document.getElementById("sub").style.display = "none"
     document.getElementById("result").style.display = "none"
 }
-
 document.getElementById("submit1").addEventListener("click", () => {
+    var percentage = (obtm * 100 / 20).toFixed(2);
+    
     var params = {
         to_name: document.getElementById("name").value,
         from_name: "Ladapo's Quiz App",
         email: document.getElementById("email").value,
-        quiz_results: generateQuizResults()
+        total_marks: "20",
+        your_marks: obtm,
+        quiz_percentage: percentage
     };
 
-    const serviceID = "service_va070an";
-    const templateID = "template_3lpjun1";
+    const serviceID = "service_msh1iw8";
+    const templateID = "template_90gnn2g";
 
     emailjs.send(serviceID, templateID, params)
         .then((response) => {
             console.log("Email sent successfully:", response);
             document.getElementById("name").value = "";
             document.getElementById("email").value = "";
-            alert("Your Result Is Send To Your Email");
+            alert("Your Result Is Sent To Your Email");
             location.reload()
         })
         .catch((error) => {
@@ -155,7 +158,6 @@ document.getElementById("submit1").addEventListener("click", () => {
             alert("Failed to send message. Please try again later.");
         });
 });
-
 function generateQuizResults() {
     return `
     
